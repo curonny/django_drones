@@ -59,3 +59,25 @@ class Medication(models.Model):
     ])
     code = models.CharField(validators=[code_validator])
     image = models.ImageField(upload_to='medications/')
+
+    def __str__(self):
+        return f"{self.name}-{self.code}-{str(self.weight)}"
+
+    def __repr__(self):
+        return f"{self.name}-{self.code}-{str(self.weight)}"
+
+
+class MedicationLoad(models.Model):
+    drone_id = models.ForeignKey(Drones, on_delete=models.CASCADE)
+    medications = models.ManyToManyField(Medication)
+
+    def get_medications(self, obj):
+        medications = obj.medications.all()
+        medications_data = []
+        for medication in medications:
+            medications_data.append({
+                'id': medication.id,
+                'code': medication.code,
+                'weight': medication.weight,
+            })
+        return medications_data
