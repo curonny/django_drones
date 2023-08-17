@@ -1,5 +1,6 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from .models import Drones
 from .models import Medication
@@ -26,17 +27,9 @@ class MedicationLoadViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = MedicationLoadSerializer
 
-    # def perform_create(self, serializer):
-    #     total_weight = sum(m.weight for m in serializer.validated_data.get('medications'))
-    #     if total_weight > serializer.validated_data.get('drone_id').weight_limit:
-    #         raise ValidationError({"error": " The total_weight is %s and the total medication weight is %s" % (
-    #             serializer.validated_data.get('drone_id').weight_limit, total_weight)}, code=400)
-    #
-    #     serializer.save()
-
 
 @action(detail=False, methods=['get'])
-class MedicamentoFiltradoViewSet(viewsets.ReadOnlyModelViewSet):
+class MedicationByDroneIdViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = MedicationSerializer
 
     def get_queryset(self):
@@ -48,3 +41,12 @@ class MedicamentoFiltradoViewSet(viewsets.ReadOnlyModelViewSet):
             return medications
         else:
             return []
+
+
+@action(detail=False, methods=['get'])
+class DroneToLoadingViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = DronesSerializer
+
+    def get_queryset(self):
+        queryset = Drones.objects.filter(battery__lt=25)
+        return queryset
