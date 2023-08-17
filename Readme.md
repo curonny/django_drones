@@ -6,8 +6,19 @@
 
 #### DB_PASSWORD=django
 
-### Create db with that name and run 
- 
+### Create db with that name and run
+
 #### python manage.py makemigrations
-####  python manage.py migrate
-####  Create superuser : python manage.py createsuperuser 
+
+#### python manage.py migrate
+
+#### Create superuser : python manage.py createsuperuser
+
+#### Export environment
+
+### export DJANGO_SETTINGS_MODULE=dron_project.settings
+
+## Start periodic task run:
+
+### celery -A dron_project beat -l info  
+ 
