@@ -23,3 +23,11 @@
 ### Start periodic task run:
 
     -celery -A dron_project beat -l info
+
+## Api Doc
+
+    -/api/drones/ => Get and POST Drones
+    -/api/medications/ => Get and POST Drones
+    -/api/medicationload/ => Load medication in dron
+    -/api/medicationload_filters?drone_id= id => Where id is the dron to search
+    -/api/drones_to_loading/ => Get drons for loading   
