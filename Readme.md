@@ -1,24 +1,25 @@
-### Create .env file with params
+# Docker run
 
-#### DB_NAME=dron
+    -docker-compose up --build
 
-#### DB_USER=django
+# Run solution without docker
 
-#### DB_PASSWORD=django
+## Create .env file with params
 
-### Create db with that name and run
+    -DB_NAME=dron
+    -DB_USER=django
+    -DB_PASSWORD=django
 
-#### python manage.py makemigrations
+## Create db with that name and run
 
-#### python manage.py migrate
-
-#### Create superuser : python manage.py createsuperuser
+    -python manage.py makemigrations
+    -python manage.py migrate
+    -Create superuser : python manage.py createsuperuser
 
 #### Export environment
 
-### export DJANGO_SETTINGS_MODULE=dron_project.settings
+    -export DJANGO_SETTINGS_MODULE=dron_project.settings
 
-## Start periodic task run:
+### Start periodic task run:
 
-### celery -A dron_project beat -l info  
- 
+    -celery -A dron_project beat -l info
