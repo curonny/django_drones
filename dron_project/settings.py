@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'drones',
     'celery',
+    'django_cron',
     'django_celery_beat',
     'rest_framework',
     'django.contrib.staticfiles',
@@ -128,4 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
+CRON_POLLING_INTERVAL = 1
+CRON_CLASSES = [
+    "drones.cron.CheckDronesBattery",
+]

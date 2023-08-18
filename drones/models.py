@@ -81,3 +81,11 @@ class MedicationLoad(models.Model):
                 'weight': medication.weight,
             })
         return medications_data
+
+
+class DronesBatteryHistory(models.Model):
+    drone_id = models.ForeignKey(Drones, on_delete=models.CASCADE)
+    battery = models.FloatField(validators=[
+        MaxValueValidator(100),
+        MinValueValidator(0)
+    ])

@@ -1,5 +1,6 @@
 from celery import Celery
 
+
 app = Celery('drones')
 
 # Celery's config using project settings
