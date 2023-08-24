@@ -5,8 +5,7 @@ ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE dron_project.settings
 
 WORKDIR /app
-COPY . /app/
-COPY .env /app/
+COPY . .
 
 
 RUN pip install -r requirements.txt
