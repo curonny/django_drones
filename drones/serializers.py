@@ -18,7 +18,7 @@ class MedicationSerializer(serializers.ModelSerializer):
 
 
 class MedicationLoadSerializer(serializers.ModelSerializer):
-    medications = MedicationSerializer(many=True)
+    medications = MedicationLoad()
 
     class Meta:
         model = MedicationLoad
