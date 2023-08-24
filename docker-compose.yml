@@ -8,7 +8,8 @@ services:
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
 
-  web:
+  dron-project:
+    image: curonny/dron-project:dron-project
     build: .
     command: >
       sh -c "python manage.py migrate &&

@@ -6,6 +6,7 @@ ENV DJANGO_SETTINGS_MODULE dron_project.settings
 
 WORKDIR /app
 COPY . /app/
+COPY .env /app/
 
 
 RUN pip install -r requirements.txt
