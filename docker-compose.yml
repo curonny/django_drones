@@ -9,6 +9,13 @@ services:
       POSTGRES_DB: dron
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "django" ,"-d","dron" ]
+      interval: 5s
+      retries: 5
+      timeout: 5s
 
   web:
     image: curonny/dron-project:dron-project
@@ -23,4 +30,5 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
